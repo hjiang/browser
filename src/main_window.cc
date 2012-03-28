@@ -13,7 +13,7 @@ class RequestTracer: public QNetworkAccessManager {
 public:
   QNetworkReply* createRequest(Operation op,
                                const QNetworkRequest& req,
-                               QIODevice* outgoingData = nullptr) override {
+                               QIODevice* outgoingData = nullptr) {
     qDebug() << req.url();
     return QNetworkAccessManager::createRequest(op, req, outgoingData);
   }
