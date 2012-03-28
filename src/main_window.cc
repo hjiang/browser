@@ -33,5 +33,10 @@ MainWindow::MainWindow()
 }
 
 void MainWindow::loadPage() {
-  web_view_->load(QUrl(url_edit_->text()));
+  auto url = url_edit_->text();
+  if (!url.startsWith("http://", Qt::CaseInsensitive) ||
+      !url.startsWith("https://", Qt::CaseInsensitive)) {
+    url = "http://" + url;
+  }
+  web_view_->load(QUrl(url));
 }
