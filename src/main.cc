@@ -1,15 +1,17 @@
 #include <QApplication>
 #include <QWebSettings>
+#include <QTabWidget>
 
-#include "main_window.h"
+#include "browser_tab.h"
 
 int main(int argc, char** argv) {
   QApplication app(argc, argv);
   app.setOrganizationName("AVOS");
   app.setApplicationName("Browser");
+  QTabWidget app_win;
   QWebSettings::globalSettings()
     ->setAttribute(QWebSettings::PluginsEnabled, true);
-  MainWindow main_win;
-  main_win.show();
+  app_win.addTab(new BrowserTab(&app_win), "blah");
+  app_win.show();
   return app.exec();
 }

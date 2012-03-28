@@ -1,6 +1,6 @@
-#include "main_window.h"
+#include "browser_tab.h"
 
-#include "main_window.moc"
+#include "browser_tab.moc"
 
 #include <QDebug>
 #include <QLineEdit>
@@ -20,8 +20,9 @@ public:
 };
 
 
-MainWindow::MainWindow()
-  : web_view_(new QWebView(this)),
+BrowserTab::BrowserTab(QWidget* parent)
+  : QMainWindow(parent),
+    web_view_(new QWebView(this)),
     url_edit_(new QLineEdit) {
   auto url_bar = new QToolBar;
   url_bar->addWidget(url_edit_);
@@ -34,7 +35,7 @@ MainWindow::MainWindow()
           this, SLOT(changeUrl(const QUrl&)));
 }
 
-void MainWindow::loadPage() {
+void BrowserTab::loadPage() {
   auto url = url_edit_->text();
   if (!url.startsWith("http://", Qt::CaseInsensitive) ||
       !url.startsWith("https://", Qt::CaseInsensitive)) {
@@ -43,6 +44,6 @@ void MainWindow::loadPage() {
   web_view_->load(QUrl(url));
 }
 
-void MainWindow::changeUrl(const QUrl& url) {
+void BrowserTab::changeUrl(const QUrl& url) {
   url_edit_->setText(url.toString());
 }
