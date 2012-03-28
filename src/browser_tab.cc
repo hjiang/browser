@@ -1,5 +1,4 @@
 #include "browser_tab.h"
-
 #include "browser_tab.moc"
 
 #include <QDebug>
@@ -46,4 +45,8 @@ void BrowserTab::loadPage() {
 
 void BrowserTab::changeUrl(const QUrl& url) {
   url_edit_->setText(url.toString());
+}
+
+void BrowserTab::changeTitle(const QString& title) {
+  emit tabTitleChanged(this, title);
 }

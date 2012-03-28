@@ -14,9 +14,13 @@ public:
   BrowserTab(const BrowserTab&) = delete;
   BrowserTab& operator=(const BrowserTab&) = delete;
 
+signals:
+  void tabTitleChanged(BrowserTab* tab, const QString& title);
+
 private slots:
   void loadPage();
   void changeUrl(const QUrl& url);
+  void changeTitle(const QString& title);
 
 private:
   QWebView* web_view_;
