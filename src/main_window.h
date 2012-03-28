@@ -5,6 +5,7 @@
 
 class QLineEdit;
 class QWebView;
+class QUrl;
 
 class MainWindow : public QMainWindow {
   Q_OBJECT;
@@ -15,6 +16,7 @@ public:
 
 private slots:
   void loadPage();
+  void changeUrl(const QUrl& url);
 
 private:
   QWebView* web_view_;

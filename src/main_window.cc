@@ -30,6 +30,8 @@ MainWindow::MainWindow()
   web_view_->page()->setNetworkAccessManager(new RequestTracer);
   web_view_->load(QUrl("http://mei.fm"));
   connect(url_edit_, SIGNAL(returnPressed()), this, SLOT(loadPage()));
+  connect(web_view_, SIGNAL(urlChanged(const QUrl&)),
+          this, SLOT(changeUrl(const QUrl&)));
 }
 
 void MainWindow::loadPage() {
@@ -39,4 +41,8 @@ void MainWindow::loadPage() {
     url = "http://" + url;
   }
   web_view_->load(QUrl(url));
+}
+
+void MainWindow::changeUrl(const QUrl& url) {
+  url_edit_->setText(url.toString());
 }
