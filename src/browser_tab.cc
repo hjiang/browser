@@ -32,6 +32,8 @@ BrowserTab::BrowserTab(QWidget* parent)
   connect(url_edit_, SIGNAL(returnPressed()), this, SLOT(loadPage()));
   connect(web_view_, SIGNAL(urlChanged(const QUrl&)),
           this, SLOT(changeUrl(const QUrl&)));
+  connect(web_view_, SIGNAL(titleChanged(const QString&)),
+          this, SLOT(changeTitle(const QString&)));
 }
 
 void BrowserTab::loadPage() {

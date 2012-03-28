@@ -11,7 +11,7 @@ public:
   BrowserWindow();
 
 private slots:
-  //  void setTabTitle(BrowserTab* tab, const QString& title);
+  void setTabTitle(BrowserTab* tab, const QString& title);
 
 private:
   void addBrowserTab(BrowserTab* tab);
