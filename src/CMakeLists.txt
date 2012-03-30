@@ -10,7 +10,12 @@ else()
   set(CMAKE_CXX_FLAGS -std=c++0x)
 endif()
 
-set(SRCS main.cc browser_tab.cc browser_window.cc)
+set(SRCS
+  browser_tab.cc
+  browser_window.cc
+  config.cc
+  main.cc
+)
 
 qt4_automoc(${SRCS})
 
