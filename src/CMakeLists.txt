@@ -1,6 +1,6 @@
 include(${QT_USE_FILE})
 
-set(AUTOMOC TRUE)
+#set(AUTOMOC TRUE)
 
 if(APPLE)
   include_directories(BEFORE
@@ -17,8 +17,17 @@ set(SRCS
   main.cc
 )
 
+set(PRINT_PAGE_SRCS
+print_page.cc
+page_printer.cc)
+
 qt4_automoc(${SRCS})
+# qt4_automoc(${PRINT_PAGE_SRCS})
+
+qt4_wrap_cpp(${PRINT_PAGE_MOCS} page_printer.h)
 
 add_executable(browser ${SRCS})
+add_executable(print_page ${PRINT_PAGE_SRCS} ${PRINT_PAGE_MOCS})
 
 target_link_libraries(browser ${QT_LIBRARIES})
+target_link_libraries(print_page ${QT_LIBRARIES})
