@@ -13,7 +13,7 @@ class RequestTracer: public QNetworkAccessManager {
 public:
   QNetworkReply* createRequest(Operation op,
                                const QNetworkRequest& req,
-                               QIODevice* outgoingData = nullptr) {
+                               QIODevice* outgoingData = 0) {
     // qDebug() << req.url();
     return QNetworkAccessManager::createRequest(op, req, outgoingData);
   }
@@ -24,7 +24,7 @@ BrowserTab::BrowserTab(QWidget* parent)
   : QMainWindow(parent),
     web_view_(new QWebView(this)),
     url_edit_(new QLineEdit) {
-  auto url_bar = new QToolBar;
+  QToolBar* url_bar = new QToolBar;
   url_bar->addWidget(url_edit_);
   setCentralWidget(web_view_);
   addToolBar(Qt::TopToolBarArea, url_bar);
@@ -40,7 +40,7 @@ BrowserTab::BrowserTab(QWidget* parent)
 }
 
 void BrowserTab::loadPage() {
-  auto url = url_edit_->text();
+  QString url = url_edit_->text();
   if (!url.startsWith("http://", Qt::CaseInsensitive) ||
       !url.startsWith("https://", Qt::CaseInsensitive)) {
     url = "http://" + url;

@@ -2,14 +2,6 @@ include(${QT_USE_FILE})
 
 #set(AUTOMOC TRUE)
 
-if(APPLE)
-  include_directories(BEFORE
-    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/v1)
-  set(CMAKE_CXX_FLAGS -std=c++11)
-else()
-  set(CMAKE_CXX_FLAGS -std=c++0x)
-endif()
-
 set(SRCS
   browser_tab.cc
   browser_window.cc
@@ -22,12 +14,10 @@ print_page.cc
 page_printer.cc)
 
 qt4_automoc(${SRCS})
-# qt4_automoc(${PRINT_PAGE_SRCS})
-
-qt4_wrap_cpp(${PRINT_PAGE_MOCS} page_printer.h)
+qt4_automoc(${PRINT_PAGE_SRCS})
 
 add_executable(browser ${SRCS})
-add_executable(print_page ${PRINT_PAGE_SRCS} ${PRINT_PAGE_MOCS})
+add_executable(print_page ${PRINT_PAGE_SRCS})
 
 target_link_libraries(browser ${QT_LIBRARIES})
 target_link_libraries(print_page ${QT_LIBRARIES})

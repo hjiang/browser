@@ -1,5 +1,5 @@
 #include "page_printer.h"
-// #include "page_printer.moc"
+#include "page_printer.moc"
 
 PagePrinter::PagePrinter(QWebView* view)
   : QObject(), view_(view) {

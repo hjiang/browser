@@ -11,8 +11,6 @@ class BrowserTab : public QMainWindow {
   Q_OBJECT;
 public:
   explicit BrowserTab(QWidget* parent);
-  BrowserTab(const BrowserTab&) = delete;
-  BrowserTab& operator=(const BrowserTab&) = delete;
 
 signals:
   void tabTitleChanged(BrowserTab* tab, const QString& title);
@@ -24,6 +22,9 @@ private slots:
   void loadFinished(bool success);
 
 private:
+  BrowserTab(const BrowserTab&);
+  BrowserTab& operator=(const BrowserTab&);
+
   QWebView* web_view_;
   QLineEdit* url_edit_;
 };

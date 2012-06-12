@@ -8,11 +8,11 @@
 #include "browser_tab.h"
 
 BrowserWindow::BrowserWindow()
-  : QTabWidget(nullptr) {
+  : QTabWidget(0) {
   setTabsClosable(true);
   setMovable(true);
   addBrowserTab(new BrowserTab(this));
-  auto button = new QPushButton("+", this);
+  QPushButton* button = new QPushButton("+", this);
   setCornerWidget(button);
   connect(button, SIGNAL(clicked()), this, SLOT(addNewBrowserTab()));
   connect(tabBar(), SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
@@ -25,7 +25,7 @@ void BrowserWindow::addBrowserTab(BrowserTab* tab) {
 }
 
 void BrowserWindow::addNewBrowserTab() {
-  auto tab = new BrowserTab(this);
+  BrowserTab* tab = new BrowserTab(this);
   addBrowserTab(tab);
   setCurrentWidget(tab);
 }
@@ -35,6 +35,7 @@ void BrowserWindow::setTabTitle(BrowserTab* tab, const QString& title) {
 }
 
 void BrowserWindow::closeTab(int index) {
-  std::unique_ptr<QWidget> tab_widget(widget(index));
+  QWidget* tab_widget(widget(index));
   removeTab(index);
+  delete tab_widget;
 }
