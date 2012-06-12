@@ -1,13 +1,13 @@
 #include "page_printer.h"
 #include "page_printer.moc"
 
+#include <iostream>
+
 PagePrinter::PagePrinter(QWebView* view)
   : QObject(), view_(view) {
 }
 
-//PagePrinter::~PagePrinter() {}
-
 void PagePrinter::loadFinished(bool success) {
-  qDebug() << view_->page()->mainFrame()->toHtml();
+  std::cout << view_->page()->mainFrame()->toHtml().toLocal8Bit().constData();
   exit(0);
 }

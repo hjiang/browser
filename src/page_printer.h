@@ -10,7 +10,6 @@ class PagePrinter : public QObject {
   Q_OBJECT;
 public:
   explicit PagePrinter(QWebView* view);
-  //virtual ~PagePrinter();
 public slots:
   virtual void loadFinished(bool success);
 private:
